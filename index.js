@@ -32,7 +32,7 @@ app.get('/api/buggy', (req, res) => {
   }
   
   res.json({
-    name: user.name 
+    name: user.name
   });
 });
 app.get('/api/bad_status', (req, res) => {
