@@ -21,21 +21,7 @@ app.get('/api/slow', (req, res) => {
   }, delay);
 });
 
-// Endpoint causing runtime error (buggy)
-// app.get('/api/buggy', (req, res) => {
-//   console.log(`[${new Date().toISOString()}] Received request for /api/buggy, triggering an error...`);
-  
-//   // Deliberate bug: Cannot read properties of undefined
-//   let user = undefined;
-  
-//   if (!user) {
-//     return res.status(404).json({ error: 'User not found' });
-//   }
-  
-//   res.json({
-//     name: user.name 
-//   });
-// });
+
 
 app.get('/api/get-weather', async (req, res) => {
   try {
