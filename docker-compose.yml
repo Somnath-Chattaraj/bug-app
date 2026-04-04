@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  my-app:
+    build: .
+    container_name: my-app
+    ports:
+      - "3006:3006"
+    restart: unless-stopped
