@@ -28,7 +28,7 @@ app.get('/api/buggy', (req, res) => {
   let user = undefined;
   
   res.json({
-    name: user.name 
+    name: user?.name ?? null
   });
 });
 
