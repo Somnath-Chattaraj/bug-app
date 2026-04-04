@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
+import "dotenv/config";
 const app = express();
 const port = 3006;
 
 app.get('/', (req, res) => {
-  res.send('Buggy App is running on port 3002. Try the /api/slow or /api/buggy endpoints.');
+  res.send('Buggy App is running on port 3006. Try the /api/slow or /api/buggy endpoints.');
 });
 
 // High latency endpoint
@@ -35,13 +36,24 @@ app.get('/api/buggy', (req, res) => {
     name: user.name 
   });
 });
-app.get('/api/bad_status', (req, res) => {
 
-  
-  res.status(500).json({
-    success: false,
-    message: 'This is an error'
-  });
+app.get('/api/get-weather', async (req, res) => {
+  try {
+
+    const apiKey = process.env.OPENWEATHERMAP_API_KEY;
+    console.log(apiKey);
+
+    const response = await fetch(
+      'https://api.openweathermappr.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=YOUR_API_KEY'
+    );
+
+    const weatherData = await response.json();
+
+    res.json(weatherData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch weather data' });
+  }
 });
 
 app.listen(port, () => {
