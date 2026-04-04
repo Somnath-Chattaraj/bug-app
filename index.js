@@ -29,6 +29,10 @@ app.get('/api/get-weather', async (req, res) => {
     const apiKey = process.env.OPENWEATHERMAP_API_KEY;
     console.log(apiKey);
 
+    if (!apiKey) {
+      return res.status(500).json({ error: 'OPENWEATHERMAP_API_KEY is not set' });
+    }
+
     const response = await fetch(
       'https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=' + apiKey
     );
