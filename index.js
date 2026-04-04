@@ -35,6 +35,14 @@ app.get('/api/buggy', (req, res) => {
     name: user.name 
   });
 });
+app.get('/api/bad_status', (req, res) => {
+
+  
+  res.status(500).json({
+    success: false,
+    message: 'This is an error'
+  });
+});
 
 app.listen(port, () => {
   console.log(`Buggy app listening on port ${port}`);

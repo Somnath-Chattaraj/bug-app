@@ -3,7 +3,14 @@ version: '3.8'
 services:
   my-app:
     build: .
-    container_name: my-app
+    container_name: my-app-1
     ports:
       - "3006:3006"
+    restart: unless-stopped
+
+  my-app2:
+    build: .
+    container_name: my-app-2
+    ports:
+      - "3007:3006"
     restart: unless-stopped
