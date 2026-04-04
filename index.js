@@ -27,6 +27,10 @@ app.get('/api/buggy', (req, res) => {
   // Deliberate bug: Cannot read properties of undefined
   let user = undefined;
   
+  if (!user) {
+    return res.status(500).json({ error: 'User is undefined' });
+  }
+
   res.json({
     name: user.name 
   });
