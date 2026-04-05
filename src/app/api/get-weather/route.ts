@@ -6,9 +6,10 @@ export async function GET() {
     console.log(apiKey);
 
     const response = await fetch(
-      'https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&appid=YOUR_API_KEY'
+      `https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&appid=${apiKey}`
     );
 
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const weatherData = await response.json();
 
     return NextResponse.json(weatherData);
